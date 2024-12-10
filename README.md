@@ -25,7 +25,7 @@ A modern, responsive React application for visualizing battery charging states o
 
 1. Clone the repository:
    ```bash
-   git clone [<repository-url>](https://github.com/mohamedabdelhamid7895/Battery-Charging)
+   git clone https://github.com/mohamedabdelhamid7895/Battery-Charging
    ```
 
 2. Install dependencies:
@@ -47,16 +47,30 @@ A modern, responsive React application for visualizing battery charging states o
 
 ```
 src/
-├── components/          # React components
-│   ├── BatteryChart/
-│   ├── BatteryStatus/
-│   ├── ChartTypeSelector/
-│   ├── ErrorMessage/
-│   └── LoadingSpinner/
-├── hooks/              # Custom React hooks
-├── utils/              # Utility functions
-├── types/              # TypeScript types
-└── data/              # Mock data
+├── __mocks__/                    # Jest mock files
+│   └── batteryApi.ts            # Battery API mocks
+├── __tests__/                   # Test files
+│   ├── App.test.tsx
+│   └── dateUtils.test.ts
+├── api/                         # API related files
+│   └── batteryApi.ts
+├── components/                  # React components
+│   ├── BatteryAnalytics/
+│   ├── ErrorBoundary/
+│   └── common/                  # Shared components
+├── config/                      # Configuration files
+├── data/                        # Data files and mock data
+├── hooks/                       # Custom React hooks
+├── services/                    # Service layer
+├── types/                       # TypeScript type definitions
+├── utils/                       # Utility functions
+├── App.tsx                      # Main App component
+├── main.tsx                     # Entry point
+├── index.css                    # Global styles
+├── setupTests.ts               # Test setup configuration
+└── vite-env.d.ts              # Vite environment types
+
+Configuration Files:
 ```
 
 ## Testing
