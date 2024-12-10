@@ -25,7 +25,7 @@ A modern, responsive React application for visualizing battery charging states o
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone [<repository-url>](https://github.com/mohamedabdelhamid7895/Battery-Charging)
    ```
 
 2. Install dependencies:
