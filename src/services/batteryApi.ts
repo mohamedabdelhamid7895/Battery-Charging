@@ -27,7 +27,7 @@ export const fetchBatteryData = async (): Promise<ChargingData> => {
     const data = await response.json();
     return data;
   } catch (error) {
-    if (error instanceof ApiError) {
+    if (error instanceof Error) {
       throw error;
     }
     throw new Error('Failed to fetch battery data');

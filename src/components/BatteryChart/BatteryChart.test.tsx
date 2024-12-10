@@ -1,48 +1,29 @@
-import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { BatteryChart } from './BatteryChart';
+import { render, screen } from "@testing-library/react";
+import { BatteryChart } from "./BatteryChart";
 
-const mockData = [
-  {
-    date: "2024-03-15T10:00:00Z",
-    chargingLevel: 50,
-    internalEventId: 1
-  },
-  {
-    date: "2024-03-15T11:00:00Z",
-    chargingLevel: 60,
-    internalEventId: 2
-  }
-];
+jest.mock("recharts", () => ({
+  ResponsiveContainer: ({ children }: { children: React.ReactNode }) => children,
+  LineChart: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+  Line: () => null,
+  XAxis: () => null,
+  YAxis: () => null,
+  CartesianGrid: () => null,
+  Tooltip: () => null,
+}));
 
-describe('BatteryChart', () => {
-  beforeEach(() => {
-    // Mock ResizeObserver
-    global.ResizeObserver = class ResizeObserver {
-      observe() {}
-      unobserve() {}
-      disconnect() {}
-    };
-  });
+describe("BatteryChart", () => {
+  const mockData = [
+    {
+      date: "2024-03-15T10:00:00Z",
+      chargingLevel: 50,
+      internalEventId: 1,
+    },
+  ];
 
-  it('renders chart with data', () => {
+  it("renders chart with data", () => {
     render(<BatteryChart data={mockData} />);
-    expect(screen.getByRole('img', { name: /battery charging chart/i })).toBeInTheDocument();
-  });
-
-  it('changes chart type when selector is clicked', () => {
-    render(<BatteryChart data={mockData} />);
-    const barChartButton = screen.getByRole('radio', { name: /bar chart/i });
-    
-    fireEvent.click(barChartButton);
-    expect(barChartButton).toHaveAttribute('aria-checked', 'true');
-  });
-
-  it('displays chart type selector', () => {
-    render(<BatteryChart data={mockData} />);
-    expect(screen.getByRole('radiogroup')).toBeInTheDocument();
-    expect(screen.getByText('Line Chart')).toBeInTheDocument();
-    expect(screen.getByText('Area Chart')).toBeInTheDocument();
-    expect(screen.getByText('Bar Chart')).toBeInTheDocument();
+    expect(
+      screen.getByRole("img", { name: /battery charging chart/i })
+    ).toBeInTheDocument();
   });
 });

@@ -1,11 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBatteryFull, faBatteryEmpty } from '@fortawesome/free-solid-svg-icons';
+import { faBatteryFull, faBatteryHalf, faBatteryQuarter } from '@fortawesome/free-solid-svg-icons';
 import { StatusCard } from "../common/StatusCard";
 import { StatusText } from "../common/StatusText";
 
 const getBatteryIcon = (level: number, isCharging: boolean) => {
-  return isCharging ? faBatteryFull : faBatteryEmpty;
+  if (isCharging) {
+    return faBatteryFull;
+  }
+  return level > 20 ? faBatteryHalf : faBatteryQuarter;
 };
 
 interface BatteryStatusProps {
